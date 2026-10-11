@@ -19,7 +19,6 @@ Sub Color()
     Dim xCol As Collection
     Dim I As Long
     On Error Resume Next
-    Range("A1:A100").Interior.Color = xlNone 
     If ActiveWindow.RangeSelection.Count > 1 Then
       xTxt = ActiveWindow.RangeSelection.AddressLocal
     Else
@@ -27,6 +26,7 @@ Sub Color()
     End If
     Set xRg = Application.InputBox("please select the data range:", "Kutools for Excel", xTxt, , , , , 8)
     If xRg Is Nothing Then Exit Sub
+    xRg.Interior.ColorIndex = xlNone
     xCIndex = 2
     Set xCol = New Collection
     For Each xCell In xRg
@@ -53,10 +53,6 @@ End Sub
 <br/>
 <br>Вот эта часть кода:
 <br/>
-<br>Range("A1:A100").Interior.Color = xlNone
+<br>xRg.Interior.ColorIndex = xlNone
 <br/>
-<br>Пока не знаю, как сделать так, чтобы диапазон был не фиксированный (тут я настроила A1:A100, потому что для моей ситуации это универсально). 
-<br/>
-<br> Как узнаю, сделаю код более универсальным: чтобы заливка снималась с диапазона, который выбирается пользователем здесь: 
-<br/>
-<br>Set xRg = Application.InputBox("please select the data range:", "Kutools for Excel", xTxt, , , , , 8)
+
